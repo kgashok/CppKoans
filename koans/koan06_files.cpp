@@ -28,10 +28,59 @@
 // The implementations of the different koans of this episode is done here.
 // Don't forget to rename the above include.
 
-void Koan06_files::a_sample_koan()
-{
-  bool test = false;
-  ASSERT_EQUAL( test, true );
+void Koan06_files::they_are_accessed_using_file_pointers() {
+  FILE *fp = 0;
+
+  fp = fopen("../koans/file_exists.txt", "r");
+  // ASSERT (fp == 0);
+  ASSERT(fp != 0);
+
+  fp = fopen("../koans/nonexistentfile", "r");
+  ASSERT_EQUAL(fp, FILL_THE_NUMBER_IN);
+
+  if (fp)
+    fclose(fp);
+}
+
+void Koan06_files::they_can_be_used_to_store_information() {
+  int marks[10] = {38, 54, 93, 41, 55, 86, 59, 100, 40, 92};
+
+  //------------------
+  // typical file operations to store 'database' marks in file
+  FILE *fp = fopen("data.bin", "w+b");
+  fwrite(marks, 10, sizeof(int), fp);
+  // fseek(fp, 0L, SEEK_SET);
+  int filesize = ftell(fp);
+  fclose(fp);
+  //------------------
+
+  // Is 'filesize' the same as size of marks database?
+  // ASSERT_EQUAL(filesize, FILL_THE_NUMBER_IN );
+  ASSERT_EQUAL(filesize, sizeof marks);
+  // And what is the actual size of the file?
+  // ASSERT_EQUAL(filesize, FILL_THE_NUMBER_IN );
+  ASSERT_EQUAL(filesize, 40);
+}
+
+#include <string.h>
+
+void Koan06_files::they_can_be_used_for_retrieval() {
+  int marks[10];
+  memset(marks, 0, 10 * sizeof(int));
+  int sum = 0;
+  for (int i = 0; i < 10; i++)
+    sum += marks[i];
+  ASSERT_EQUAL(sum, 0);
+
+  FILE *fp = fopen("data.bin", "r+b");
+  fread(marks, 10, sizeof(int), fp);
+  // marks[10] = {38, 54, 93, 41, 55, 86, 59, 100, 40, 92};
+  for (int i = 0; i < 10; i++)
+    sum += marks[i];
+  printf(" %d\n", sum);
+
+  // ASSERT_EQUAL(sum, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(sum, 658);
 }
 
 // EOF

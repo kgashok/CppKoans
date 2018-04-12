@@ -30,52 +30,58 @@
 #define KOAN06_FILES_HPP
 
 // Rename the Episode
-class Koan06_files : Koan
-{
-  private:
-    KoanHandler *status;                //!
-    // When ever a koan is added at the very bottom, this counter needs to be
-    // increased.
-    static const int num_tests = 1;     //!
+class Koan06_files : Koan {
+private:
+  KoanHandler *status; //!
+  // When ever a koan is added at the very bottom, this counter needs to be
+  // increased.
+  static const int num_tests = 3; //!
 
-  public:
-    /**
-     *
-     */
-    Koan06_files( KoanHandler *status ) : status( status ) {
-      status->register_koans( num_tests );
-    }
-    /**
-     *
-     */
-    ~Koan06_files() {}
+public:
+  /**
+   *
+   */
+  Koan06_files(KoanHandler *status) : status(status) {
+    status->register_koans(num_tests);
+  }
+  /**
+   *
+   */
+  ~Koan06_files() {}
 
-    /**
-     *
-     */
-    void run() {
-      // For each koan in this episode, one line needs to be written.
-      // The koans are executed in the order they are called here.
-      status->episode_start( "sixth" );
+  /**
+   *
+   */
+  void run() {
+    // For each koan in this episode, one line needs to be written.
+    // The koans are executed in the order they are called here.
+    status->episode_start("seventh");
 
-      status->eval_koan( *this, static_cast<void ( Koan:: * )()>( &Koan06_files::a_sample_koan ) );
-      //status->eval_koan( *this, static_cast<void ( Koan:: * )()>( &Koan05_pointers::they_are_just_variables ) );
+    status->eval_koan(
+        *this, static_cast<void (Koan::*)()>(
+                   &Koan06_files::they_are_accessed_using_file_pointers));
+    status->eval_koan(
+        *this, static_cast<void (Koan::*)()>(
+                   &Koan06_files::they_can_be_used_to_store_information));
+    status->eval_koan(*this,
+                      static_cast<void (Koan::*)()>(
+                          &Koan06_files::they_can_be_used_for_retrieval));
 
-      status->episode_done( "seventh" );
-    }
+    status->episode_done("seventh");
+  }
 
-    /**
-     *
-     */
-    static int get_num_tests() {
-      return num_tests;
-    }
+  /**
+   *
+   */
+  static int get_num_tests() { return num_tests; }
 
-  private:
-    // Add further Koans down here by defining their name.
-    // The implementation of these is done in ~/koans/koanXX_sample_koans.cpp
-    // REMARK: Do not forget to increase this.num_tests when you add another koan
-    void a_sample_koan();
+private:
+  // Add further Koans down here by defining their name.
+  // The implementation of these is done in ~/koans/koanXX_sample_koans.cpp
+  // REMARK: Do not forget to increase this.num_tests when you add another koan
+  void they_are_accessed_using_file_pointers();
+  void they_can_be_used_to_store_information();
+  void they_can_be_used_for_retrieval();
 };
 
 #endif // KOANXX_SAMPLE_KOANS_HPP
