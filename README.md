@@ -1,4 +1,4 @@
-#CppKoans
+# CppKoans
 
 Inspired by [RubyKoans](https://github.com/edgecase/ruby_koans) and 
 [JavaScript-Koans](https://github.com/liammclennan/JavaScript-Koans), this is
@@ -6,13 +6,13 @@ an attempt to write such koans for C/C++.
 
 Some ideas were taken from [PointerKoans](https://github.com/paytonrules/PointerKoan).
 
-###Prerequesites
+### Prerequesites
 You will need [CMake](http://cmake.org/).
 
 And of course a C++ compiler.
 I just tested it with a recent GCC.
 
-##How to walk the path to enlightment
+## How to walk the path to enlightment
 1. Get the sources
 
         git clone git://github.com/torbjoernk/CppKoans.git
@@ -25,7 +25,7 @@ I just tested it with a recent GCC.
 
 3. Configure the build
 
-        cmake ..
+        cmake ./..
 
 4. Compile
 
