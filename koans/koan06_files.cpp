@@ -77,7 +77,7 @@ void Koan06_files::they_can_be_used_for_retrieval() {
   // marks[10] = {38, 54, 93, 41, 55, 86, 59, 100, 40, 92};
   for (int i = 0; i < 10; i++)
     sum += marks[i];
-  printf(" %d\n", sum);
+  //printf(" %d\n", sum);
 
   // ASSERT_EQUAL(sum, FILL_THE_NUMBER_IN);
   ASSERT_EQUAL(sum, 658);

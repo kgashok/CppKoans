@@ -124,6 +124,7 @@ void Koan05_pointers::they_can_be_used_to_access_dynamic_memory() {
   *p = 'a';
   // ASSERT_EQUAL(*p, FILL_THE_CHAR_IN);
   ASSERT_EQUAL(*p, 'a');
+
 }
 
 // EOF
