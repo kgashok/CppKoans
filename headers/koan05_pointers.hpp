@@ -32,23 +32,23 @@
 class Koan05_pointers : Koan {
 private:
   KoanHandler *status;             //!
-  static const int num_tests = 10; //!
+  static const int num_tests = 13; //!
 
 public:
   /**
-   *
-   */
+ *
+ */
   Koan05_pointers(KoanHandler *status) : status(status) {
     status->register_koans(num_tests);
   }
   /**
-   *
-   */
+ *
+ */
   ~Koan05_pointers() {}
 
   /**
-   *
-   */
+ *
+ */
   void run() {
     status->episode_start("sixth");
 
@@ -83,13 +83,20 @@ public:
         *this,
         static_cast<void (Koan::*)()>(
             &Koan05_pointers::they_can_be_used_to_access_dynamic_memory));
-
+    status->eval_koan(*this, static_cast<void (Koan::*)()>(
+                                &Koan05_pointers::they_are_required_if_you_want_to_write_swap));
+    status->eval_koan(*this, static_cast<void (Koan::*)()>(
+                                &Koan05_pointers::they_are_used_as_function_arguments_parameters));
+    
+    status->eval_koan(*this, static_cast<void (Koan::*)()>(
+                                &Koan05_pointers::they_are_used_for_writing_indirection_code));
+    
     status->episode_done("sixth");
   }
 
   /**
-   *
-   */
+ *
+ */
   static int get_num_tests() { return num_tests; }
 
 private:
@@ -104,6 +111,9 @@ private:
   void they_can_do_arithmetic_with_integers_only();
   void they_can_be_initialized_to_dynamic_memory();
   void they_can_be_used_to_access_dynamic_memory();
+  void they_are_required_if_you_want_to_write_swap();
+  void they_are_used_as_function_arguments_parameters();
+  void they_are_used_for_writing_indirection_code();
 };
 
 #endif // KOAN05_POINTERS_HPP

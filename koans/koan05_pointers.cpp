@@ -124,7 +124,79 @@ void Koan05_pointers::they_can_be_used_to_access_dynamic_memory() {
   *p = 'a';
   // ASSERT_EQUAL(*p, FILL_THE_CHAR_IN);
   ASSERT_EQUAL(*p, 'a');
+}
 
+void swap(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+void Koan05_pointers::they_are_required_if_you_want_to_write_swap() {
+  int a = 5;
+  int b = 3;
+  swap(&a, &b);
+
+  // ASSERT_EQUAL(a, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(a, 3);
+  // ASSERT_EQUAL(b, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(b, 5);
+}
+
+void g(int x, int *y) {
+  printf("In g, x = %d, *y = %d\n", x, *y);
+  x++;
+  *y = *y - x;
+  y = &x;
+}
+
+void fg(int *a, int b) {
+  printf("In fg, *a = %d, b = %d\n", *a, b);
+  *a += b;
+  b *= 2;
+  g(*a, &b);
+  printf("Back in fg, *a = %d, b = %d\n", *a, b);
+}
+
+void Koan05_pointers::they_are_used_as_function_arguments_parameters() {
+  int x = 3;
+  int y = 4;
+  fg(&x, y);
+  printf("In main: x = %d, y = %d\n", x, y);
+
+  // ASSERT_EQUAL(x, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(x, 7);
+
+  // ASSERT_EQUAL(y, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(y, 4);
+}
+
+int f(int **r, int **s) {
+  int temp = **r;
+  int temp2 = **s;
+  int *z = *r;
+  *r = *s;
+  *s = z;
+  printf("**r = %d\n", **r);
+  printf("**s = %d\n", **s);
+  *z += 3;
+  **s -= 8;
+  **r -= 19;
+  return temp + temp2;
+}
+
+void Koan05_pointers::they_are_used_for_writing_indirection_code() {
+  int a = 80;
+  int b = 12;
+  int *p = &a;
+  int *q = &b;
+  int x = f(&p, &q);
+  // ASSERT_EQUAL(a, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(a, 75);
+  // ASSERT_EQUAL(b, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(b, -7);
+  // ASSERT_EQUAL(x, FILL_THE_NUMBER_IN);
+  ASSERT_EQUAL(x, 92);
 }
 
 // EOF
